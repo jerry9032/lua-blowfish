@@ -1,7 +1,7 @@
 #pragma once
 
-#include "lua5.1/lua.h"
-#include "lua5.1/lauxlib.h"
+#include "lua5.3/lua.h"
+#include "lua5.3/lauxlib.h"
 #include "blowfish.h"
 
 #include <string.h>
@@ -36,3 +36,6 @@ extern int luaopen_blowfish (lua_State* L);
 
 	@treturn BFContext a context to be used for encrypting/decrypting blocks	
 */
+
+#define luaL_register(L,n,f) \
+    { if ((n) == NULL) luaL_setfuncs(L,f,0); else luaL_newlib(L,f); }
